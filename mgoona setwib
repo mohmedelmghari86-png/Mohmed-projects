@@ -1,0 +1,475 @@
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mgoona Rose 🌹 | Kelaat M'Gouna — The Valley of Roses</title>
+<meta name="description" content="Mgoona Rose — discover rose products, the beauty of Kelaat M'Gouna, the International Rose Festival, and the Valley of Roses in Morocco.">
+<style>
+:root{
+  --rose:#b03060;
+  --rose-deep:#8a1f4a;
+  --rose-soft:#e8b4c4;
+  --blush:#f9eef1;
+  --cream:#fdfaf8;
+  --ink:#3a2a30;
+  --muted:#7d6a70;
+  --green:#4a6b52;
+  --gold:#c9a24b;
+  --shadow:0 10px 30px rgba(138,31,74,.10);
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.65;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,92%);margin:0 auto}
+
+/* ---------- Header ---------- */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(253,250,248,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(176,48,96,.12);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
+.logo{display:flex;align-items:center;gap:.55rem;font-size:1.35rem;font-weight:700;letter-spacing:.5px;color:var(--rose-deep)}
+.logo svg{width:30px;height:30px}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{font-size:.95rem;font-weight:600;color:var(--ink);position:relative;padding:.25rem 0;transition:color .25s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--rose);border-radius:2px;transition:width .3s}
+.nav-links a:hover{color:var(--rose)}
+.nav-links a:hover::after{width:100%}
+.burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+.burger span{width:24px;height:2px;background:var(--rose-deep);border-radius:2px;transition:.3s}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;min-height:88vh;display:flex;align-items:center;
+  background:linear-gradient(rgba(58,10,28,.55),rgba(58,10,28,.65)),url("images/roses-red.png") center/cover no-repeat;
+  color:#fff;text-align:center;
+}
+.hero-inner{max-width:760px;margin:0 auto;padding:4rem 1.5rem}
+.hero .eyebrow{display:inline-block;font-size:.85rem;letter-spacing:3px;text-transform:uppercase;color:var(--rose-soft);border:1px solid rgba(232,180,196,.5);padding:.35rem 1rem;border-radius:999px;margin-bottom:1.2rem}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:var(--rose-soft)}
+.hero p{font-size:1.1rem;opacity:.92;margin-bottom:2rem}
+.btn{display:inline-block;padding:.85rem 2rem;border-radius:999px;font-weight:700;font-size:.95rem;transition:transform .25s, box-shadow .25s;cursor:pointer;border:none}
+.btn-rose{background:var(--rose);color:#fff;box-shadow:0 8px 22px rgba(176,48,96,.4)}
+.btn-rose:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(176,48,96,.5)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.7);color:#fff;margin-left:.8rem}
+.btn-ghost:hover{background:rgba(255,255,255,.15)}
+
+/* ---------- Section base ---------- */
+section{padding:5rem 0}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 3rem}
+.sec-head .kicker{font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:700}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--rose-deep);margin:.4rem 0 .8rem}
+.sec-head p{color:var(--muted)}
+.divider{display:flex;align-items:center;justify-content:center;gap:.8rem;margin:0 auto 1rem;color:var(--rose)}
+.divider::before,.divider::after{content:"";height:1px;width:60px;background:linear-gradient(90deg,transparent,var(--rose-soft))}
+.divider::after{background:linear-gradient(90deg,var(--rose-soft),transparent)}
+.divider svg{width:22px;height:22px}
+
+/* ---------- Products ---------- */
+#products{background:var(--blush)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.8rem}
+.card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);transition:transform .3s, box-shadow .3s;
+  display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(138,31,74,.18)}
+.card .thumb{height:220px;overflow:hidden}
+.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover .thumb img{transform:scale(1.08)}
+.card .body{padding:1.3rem 1.3rem 1.5rem;display:flex;flex-direction:column;flex:1}
+.card .tag{font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);font-weight:700}
+.card h3{font-size:1.15rem;color:var(--rose-deep);margin:.35rem 0 .5rem}
+.card p{font-size:.92rem;color:var(--muted);flex:1}
+.card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:1rem}
+.price{font-weight:800;color:var(--rose);font-size:1.05rem}
+.card .foot a{font-size:.85rem;font-weight:700;color:var(--green)}
+.card .foot a:hover{color:var(--rose)}
+
+/* ---------- Attractions ---------- */
+.attr{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
+.attr-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative;min-height:340px;display:flex;align-items:flex-end}
+.attr-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.attr-card:hover img{transform:scale(1.06)}
+.attr-card .overlay{
+  position:relative;width:100%;padding:1.6rem;color:#fff;
+  background:linear-gradient(transparent,rgba(40,8,20,.85));
+}
+.attr-card h3{font-size:1.35rem;margin-bottom:.3rem}
+.attr-card p{font-size:.92rem;opacity:.92}
+
+/* ---------- Festival ---------- */
+#festival{background:linear-gradient(135deg,#fbe9ef 0%,#fdf6f0 100%)}
+.fest-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.fest-wrap img{border-radius:var(--radius);box-shadow:var(--shadow)}
+.fest-text h2{color:var(--rose-deep);font-size:clamp(1.7rem,3.5vw,2.4rem);margin-bottom:1rem}
+.fest-text p{color:var(--muted);margin-bottom:1rem}
+.stats{display:flex;gap:2rem;margin-top:1.6rem;flex-wrap:wrap}
+.stat b{display:block;font-size:1.6rem;color:var(--rose)}
+.stat span{font-size:.85rem;color:var(--muted)}
+
+/* ---------- Gallery ---------- */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:.9rem}
+.g-item{border-radius:14px;overflow:hidden;cursor:zoom-in;position:relative}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.g-item:hover img{transform:scale(1.07)}
+.g-wide{grid-column:span 2}
+.g-tall{grid-row:span 2}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(20,4,10,.9);display:none;align-items:center;justify-content:center;z-index:200;padding:2rem}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92%;max-height:88%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lightbox .close{position:absolute;top:20px;right:28px;color:#fff;font-size:2.2rem;cursor:pointer;line-height:1}
+.lightbox .nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:2rem;width:52px;height:52px;border-radius:50%;cursor:pointer;transition:background .25s}
+.lightbox .nav-btn:hover{background:rgba(255,255,255,.28)}
+.lightbox .prev{left:20px}.lightbox .next{right:20px}
+
+/* ---------- Ads ---------- */
+#ads{background:var(--blush)}
+.ads-layout{display:grid;grid-template-columns:1fr 320px;gap:2rem}
+.ad-banner{
+  border-radius:var(--radius);overflow:hidden;position:relative;min-height:300px;
+  display:flex;align-items:center;box-shadow:var(--shadow);
+}
+.ad-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ad-banner .inner{position:relative;padding:2.4rem;color:#fff;max-width:520px;background:linear-gradient(90deg,rgba(58,10,28,.75),transparent)}
+.ad-banner h3{font-size:1.7rem;margin-bottom:.5rem}
+.ad-banner p{font-size:.95rem;opacity:.92;margin-bottom:1.2rem}
+.ad-card{background:#fff;border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow);margin-bottom:1.2rem;border-left:4px solid var(--gold)}
+.ad-card .label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700}
+.ad-card h4{color:var(--rose-deep);margin:.3rem 0}
+.ad-card p{font-size:.88rem;color:var(--muted)}
+
+/* ---------- Footer ---------- */
+footer{background:#2e1420;color:#e9d3da;padding:3.5rem 0 1.5rem}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+footer h4{color:#fff;margin-bottom:1rem;font-size:1.05rem}
+footer p,footer li{font-size:.9rem;opacity:.85}
+footer ul{list-style:none}
+footer ul li{margin-bottom:.45rem}
+footer a:hover{color:var(--rose-soft)}
+.copy{text-align:center;font-size:.82rem;opacity:.6;border-top:1px solid rgba(255,255,255,.12);padding-top:1.4rem}
+
+/* Petal float animation (subtle) */
+.petal{position:absolute;width:16px;height:16px;opacity:.5;pointer-events:none;animation:float 9s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(18deg)}}
+
+/* ---------- Responsive ---------- */
+@media(max-width:900px){
+  .attr{grid-template-columns:1fr}
+  .fest-wrap{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .ads-layout{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .burger{display:flex}
+  .nav-links{
+    position:fixed;top:64px;right:0;left:0;background:var(--cream);
+    flex-direction:column;padding:1.4rem 0;gap:1.1rem;
+    box-shadow:0 20px 30px rgba(0,0,0,.12);
+    transform:translateY(-130%);transition:transform .35s ease;
+    border-bottom:1px solid rgba(176,48,96,.15);
+  }
+  .nav-links.open{transform:translateY(0)}
+  .hero{min-height:75vh}
+  .btn-ghost{margin-left:0;margin-top:.8rem}
+  .gallery{grid-auto-rows:150px}
+  .foot-grid{grid-template-columns:1fr}
+  section{padding:3.5rem 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2 2.2 4.6 2.8 4.6 6 0 2-1.4 3.4-2.8 4 .9 1.4 1.2 3 1.2 5-1.2-.6-2.2-1.4-3-2.6-.8 1.2-1.8 2-3 2.6 0-2 .3-3.6 1.2-5C8.8 12.4 7.4 11 7.4 9c0-3.2 2.6-3.8 4.6-6z" fill="#b03060"/><path d="M12 12v9" stroke="#4a6b52" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Mgoona Rose
+    </a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#attractions">Attractions</a></li>
+        <li><a href="#festival">Rose Festival</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#ads">Offers</a></li>
+      </ul>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" style="padding:0">
+  <div class="hero-inner">
+    <span class="eyebrow">Kelaat M'Gouna · Morocco · Valley of Roses</span>
+    <h1>Where the Desert Blooms<br><em>in Pink</em> 🌹</h1>
+    <p>Discover the magic of the Valley of Roses — pure rose water, precious rose oil, timeless landscapes, and a festival that perfumes the whole Atlas Mountains every spring.</p>
+    <a href="#products" class="btn btn-rose">Explore Our Roses</a>
+    <a href="#festival" class="btn btn-ghost">The Rose Festival</a>
+  </div>
+</section>
+
+<!-- ===== Products ===== -->
+<section id="products">
+  <div class="container">
+    <div class="sec-head">
+      <div class="divider"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2 2.2 4.6 2.8 4.6 6 0 2-1.4 3.4-2.8 4 .9 1.4 1.2 3 1.2 5-1.2-.6-2.2-1.4-3-2.6-.8 1.2-1.8 2-3 2.6 0-2 .3-3.6 1.2-5C8.8 12.4 7.4 11 7.4 9c0-3.2 2.6-3.8 4.6-6z" fill="#b03060"/></svg></div>
+      <span class="kicker">Handcrafted from the Valley</span>
+      <h2>Rose Products</h2>
+      <p>Each product is born from the famous Damask roses of Kelaat M'Gouna, harvested at dawn and distilled by generations of local artisans.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"><img src="images/rose-water.png" alt="Pure rose water"></div>
+        <div class="body">
+          <span class="tag">Pure & Natural</span>
+          <h3>Pure Rose Water</h3>
+          <p>Steam-distilled from fresh Damask petals. A soothing tonic for the skin, a delicate flavor for tea and pastries.</p>
+          <div class="foot"><span class="price">120 MAD</span><a href="#ads">Order →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="images/rose-oil.png" alt="Rose essential oil"></div>
+        <div class="body">
+          <span class="tag">Precious Essence</span>
+          <h3>Rose Essential Oil</h3>
+          <p>It takes thousands of petals to make a single drop. A luxurious oil prized in perfumery and natural skincare.</p>
+          <div class="foot"><span class="price">890 MAD</span><a href="#ads">Order →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="images/rose-perfume.png" alt="Rose perfume"></div>
+        <div class="body">
+          <span class="tag">Signature Scent</span>
+          <h3>Mgoona Eau de Parfum</h3>
+          <p>Our signature fragrance — soft rose heart notes warmed with amber and a whisper of Atlas cedarwood.</p>
+          <div class="foot"><span class="price">450 MAD</span><a href="#ads">Order →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="images/rose-cream.png" alt="Rose cosmetics"></div>
+        <div class="body">
+          <span class="tag">Skincare</span>
+          <h3>Rose Face Cream &amp; Soap</h3>
+          <p>Nourishing creams, gentle soaps, and bath rituals infused with rose petals and valley honey.</p>
+          <div class="foot"><span class="price">180 MAD</span><a href="#ads">Order →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="images/dried-roses.png" alt="Dried rose buds"></div>
+        <div class="body">
+          <span class="tag">Tea & Rituals</span>
+          <h3>Dried Rose Buds</h3>
+          <p>Sun-dried petals and buds for fragrant teas, potpourri, and traditional Moroccan rose rituals.</p>
+          <div class="foot"><span class="price">75 MAD</span><a href="#ads">Order →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="images/rose-bottle.png" alt="Rose infused drink bottle"></div>
+        <div class="body">
+          <span class="tag">Lifestyle</span>
+          <h3>Rose-Infused Collection</h3>
+          <p>Rose waters for cooking, botanical drinks, and artisanal gifts inspired by the valley's heritage.</p>
+          <div class="foot"><span class="price">220 MAD</span><a href="#ads">Order →</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Attractions ===== -->
+<section id="attractions">
+  <div class="container">
+    <div class="sec-head">
+      <div class="divider"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2 2.2 4.6 2.8 4.6 6 0 2-1.4 3.4-2.8 4 .9 1.4 1.2 3 1.2 5-1.2-.6-2.2-1.4-3-2.6-.8 1.2-1.8 2-3 2.6 0-2 .3-3.6 1.2-5C8.8 12.4 7.4 11 7.4 9c0-3.2 2.6-3.8 4.6-6z" fill="#b03060"/></svg></div>
+      <span class="kicker">Explore Kelaat M'Gouna</span>
+      <h2>Landmarks &amp; Hidden Gems</h2>
+      <p>From palm-fringed valleys to the summit of the High Atlas, the region around Kelaat M'Gouna is a treasure for travelers.</p>
+    </div>
+    <div class="attr">
+      <div class="attr-card">
+        <img src="images/boutghrar.png" alt="Boutghrar valley">
+        <div class="overlay"><h3>Boutghrar</h3><p>A remote Berber village famous for its river oasis, ancient kasbahs, and some of the finest rose fields in the valley — reachable only by foot or 4x4.</p></div>
+      </div>
+      <div class="attr-card">
+        <img src="images/ighil-mgoun.png" alt="Ighil N'Mgoun mountain">
+        <div class="overlay"><h3>Ighil N'Mgoun</h3><p>At 4,071 m, the "Everest of the Atlas" towers over the valley. A multi-day trek through gorges and high pastures rewards hikers with breathtaking summit views.</p></div>
+      </div>
+      <div class="attr-card">
+        <img src="images/mgoun-gorges.png" alt="M'Goun gorges">
+        <div class="overlay"><h3>M'Goun Gorges</h3><p>Dramatic canyons carved by mountain rivers — perfect for hiking, swimming in natural pools, and spotting nomad trails.</p></div>
+      </div>
+      <div class="attr-card">
+        <img src="images/kasbah-roses.png" alt="Old kasbah among roses">
+        <div class="overlay"><h3>The Rose Valley Kasbahs</h3><p>Earthen fortresses and gardens where roses bloom beneath red-rock cliffs — the heart of the region's living heritage.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Festival ===== -->
+<section id="festival">
+  <div class="container fest-wrap">
+    <div class="fest-text">
+      <div class="divider" style="justify-content:flex-start;margin:0 0 1rem"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2 2.2 4.6 2.8 4.6 6 0 2-1.4 3.4-2.8 4 .9 1.4 1.2 3 1.2 5-1.2-.6-2.2-1.4-3-2.6-.8 1.2-1.8 2-3 2.6 0-2 .3-3.6 1.2-5C8.8 12.4 7.4 11 7.4 9c0-3.2 2.6-3.8 4.6-6z" fill="#b03060"/></svg></div>
+      <h2>The International Rose Festival of Kelaat M'Gouna</h2>
+      <p>Every May, when the Damask roses are in full bloom, the town transforms into a sea of pink. The International Rose Festival celebrates the harvest that has shaped local life for centuries — with parades of flower-decked floats, traditional Ahidous music and dance, and the crowning of the Rose Queen.</p>
+      <p>Founded to honor the valley's agricultural soul, the festival has become one of Morocco's most beloved cultural events. It shines a light on Berber traditions, brings together cooperatives and artisans, and opens the doors of the valley to visitors from around the world — boosting tourism and giving local rose products a global stage.</p>
+      <div class="stats">
+        <div class="stat"><b>~20,000 t</b><span>of roses harvested yearly</span></div>
+        <div class="stat"><b>7 days</b><span>of festivities each May</span></div>
+        <div class="stat"><b>1960s</b><span>origins of the festival</span></div>
+      </div>
+    </div>
+    <img src="images/harvest.png" alt="Rose harvest during the festival">
+  </div>
+</section>
+
+<!-- ===== Gallery ===== -->
+<section id="gallery">
+  <div class="container">
+    <div class="sec-head">
+      <div class="divider"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2 2.2 4.6 2.8 4.6 6 0 2-1.4 3.4-2.8 4 .9 1.4 1.2 3 1.2 5-1.2-.6-2.2-1.4-3-2.6-.8 1.2-1.8 2-3 2.6 0-2 .3-3.6 1.2-5C8.8 12.4 7.4 11 7.4 9c0-3.2 2.6-3.8 4.6-6z" fill="#b03060"/></svg></div>
+      <span class="kicker">Roses &amp; Landscapes</span>
+      <h2>Gallery</h2>
+      <p>A glimpse of the pink valleys, mountain peaks, and daily life of Kelaat M'Gouna. Click any image to enlarge.</p>
+    </div>
+    <div class="gallery">
+      <div class="g-item g-tall"><img src="images/harvest.png" alt="Rose harvest"></div>
+      <div class="g-item"><img src="images/rose-close.png" alt="Pink rose close-up"></div>
+      <div class="g-item"><img src="images/berber-village.png" alt="Berber village terraces"></div>
+      <div class="g-item"><img src="images/rose-picking.png" alt="Picking roses in the valley"></div>
+      <div class="g-item g-wide"><img src="images/boutghrar.png" alt="Boutghrar oasis"></div>
+      <div class="g-item"><img src="images/dried-roses.png" alt="Dried rose buds"></div>
+      <div class="g-item"><img src="images/roses-soft.png" alt="Soft pink roses"></div>
+      <div class="g-item"><img src="images/ighil-mgoun.png" alt="Ighil N'Mgoun peaks"></div>
+      <div class="g-item"><img src="images/mgoun-village.png" alt="Village at the foot of M'Goun"></div>
+      <div class="g-item g-wide"><img src="images/valley-blossom.png" alt="Valley in bloom"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="close" id="lbClose">&times;</span>
+  <button class="nav-btn prev" id="lbPrev">‹</button>
+  <img id="lbImg" src="" alt="Gallery image">
+  <button class="nav-btn next" id="lbNext">›</button>
+</div>
+
+<!-- ===== Advertisements ===== -->
+<section id="ads">
+  <div class="container">
+    <div class="sec-head">
+      <div class="divider"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2 2.2 4.6 2.8 4.6 6 0 2-1.4 3.4-2.8 4 .9 1.4 1.2 3 1.2 5-1.2-.6-2.2-1.4-3-2.6-.8 1.2-1.8 2-3 2.6 0-2 .3-3.6 1.2-5C8.8 12.4 7.4 11 7.4 9c0-3.2 2.6-3.8 4.6-6z" fill="#b03060"/></svg></div>
+      <span class="kicker">Sponsored &amp; Special Offers</span>
+      <h2>Offers &amp; Partners</h2>
+      <p>Discover curated experiences and exclusive deals from our partners in the Valley of Roses.</p>
+    </div>
+    <div class="ads-layout">
+      <div class="ad-banner">
+        <img src="images/kasbah-roses.png" alt="Rose valley retreat">
+        <div class="inner">
+          <span class="label" style="font-size:.7rem;letter-spacing:2px;color:#c9a24b;font-weight:700">FEATURED</span>
+          <h3>Valley Retreat — 3 Days in the Land of Roses</h3>
+          <p>Stay in a traditional kasbah, walk the rose fields at sunrise, and learn distillation secrets from local masters. Book before the festival and save 20%.</p>
+          <a href="#" class="btn btn-rose">Book Your Stay</a>
+        </div>
+      </div>
+      <aside>
+        <div class="ad-card">
+          <span class="label">Advertisement</span>
+          <h4>Cooperative Roseraie Atlas</h4>
+          <p>Wholesale rose water &amp; oil directly from the producers. Export quality, fair-trade certified.</p>
+        </div>
+        <div class="ad-card">
+          <span class="label">Advertisement</span>
+          <h4>Trekking M'Goun Aventure</h4>
+          <p>Guided treks to Ighil N'Mgoun summit and Boutghrar — equipment, mules, and Berber meals included.</p>
+        </div>
+        <div class="ad-card">
+          <span class="label">Advertisement</span>
+          <h4>Your Ad Here 🌹</h4>
+          <p>Reach thousands of rose lovers. Contact us to showcase your business in the Valley of Roses.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo" style="color:#f2c7d4;margin-bottom:.8rem;display:inline-flex">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2 2.2 4.6 2.8 4.6 6 0 2-1.4 3.4-2.8 4 .9 1.4 1.2 3 1.2 5-1.2-.6-2.2-1.4-3-2.6-.8 1.2-1.8 2-3 2.6 0-2 .3-3.6 1.2-5C8.8 12.4 7.4 11 7.4 9c0-3.2 2.6-3.8 4.6-6z" fill="#e8b4c4"/></svg>
+          Mgoona Rose 🌹
+        </a>
+        <p>Celebrating the Damask rose of Kelaat M'Gouna — its products, its people, and its landscapes. From our valley to your home.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#products">Rose Products</a></li>
+          <li><a href="#attractions">Attractions</a></li>
+          <li><a href="#festival">Rose Festival</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Kelaat M'Gouna, Drâa-Tafilalet, Morocco</li>
+          <li>hello@mgoona-rose.ma</li>
+          <li>+212 6 00 00 00 00</li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">© 2026 Mgoona Rose 🌹 — Made with love in the Valley of Roses, Kelaat M'Gouna.</p>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// Lightbox
+const gItems=[...document.querySelectorAll('.g-item img')];
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+let idx=0;
+function show(i){idx=(i+gItems.length)%gItems.length;lbImg.src=gItems[idx].src;lbImg.alt=gItems[idx].alt;}
+gItems.forEach((img,i)=>img.addEventListener('click',()=>{show(i);lb.classList.add('open');}));
+document.getElementById('lbClose').addEventListener('click',()=>lb.classList.remove('open'));
+document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation();show(idx-1);});
+document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation();show(idx+1);});
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('open');});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')lb.classList.remove('open');
+  if(e.key==='ArrowLeft')show(idx-1);if(e.key==='ArrowRight')show(idx+1);});
+</script>
+</body>
+</html>
+'''
+with open('/mnt/agents/output/index.html','w',encoding='utf-8') as f:
+    f.write(html)
+print('done', os.path.getsize('/mnt/agents/output/index.html'))
